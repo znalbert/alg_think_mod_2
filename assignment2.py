@@ -59,9 +59,6 @@ def targeted_order(ugraph):
     return order
 
 
-def fast_targeted_order(ugraph):
-
-
 ##########################################################
 # Code for loading computer network graph
 
@@ -160,3 +157,51 @@ def random_order(ugraph):
 
     return ro_nodes
 
+
+def plot_resiliences(nodes, network_vals, er_vals, upa_vals):
+    """
+    Plot an example with two curves with legends
+    """
+    node_vals = range(0, nodes)
+
+    plt.plot(node_vals, network_vals, '-b', label='Network')
+    plt.plot(node_vals, er_vals, '-r', label='ER')
+    plt.plot(node_vals, upa_vals, '-g', label='UPA')
+
+    plt.legend(loc='upper right')
+    plt.ylabel('Size of Largest Connected Component')
+    plt.xlabel('Number of Nodes Removed')
+    plt.grid(True)
+    plt.title('Comparison of Graph Resilience\nMeasured by Largest Connected Component vs Nodes Removed by Target Attack\n')
+    plt.show()
+
+
+def fast_targeted_order(ugraph):
+    """ dict -> list
+    Takes a graph and outputs an ordered list of of nodes is descending order
+    of their degree.
+    """
+    degree_sets = {}
+    num_nodes = len(ugraph)
+    for node in range(0, num_nodes):
+        degree_sets[node] = set([])
+
+    for node_degree in range(0, num_nodes):
+        degree = len(ugraph[node_degree])
+        degree_sets[degree].add(node_degree)
+
+    desc_node_degrees = []
+    index = 0
+
+    for degree in range(num_nodes - 1, -1, -1):
+        while len(degree_sets[degree]) > 0:
+            node_to_add = degree_sets[degree].pop()
+            for neighbor in ugraph[node_to_add]:
+                neighbor_degree = len(ugraph[neighbor])
+                degree_sets[neighbor_degree].remove(neighbor)
+                degree_sets[neighbor_degree - 1].add(neighbor)
+            desc_node_degrees.insert(index, node_to_add)
+            index += 1
+            a.delete_node(ugraph, node_to_add)
+
+    return desc_node_degrees

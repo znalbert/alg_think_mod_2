@@ -4,13 +4,14 @@ Question 1
 
 import assignment2 as a
 import graph_operations as go
+import matplotlib.pyplot as plt
 
 # Find probability p such that the ER graph will have approximately the
 # same number of edges as the computer network.
 
 NODES = 1239
 EDGES = 3047
-NETWORK_GRAPH = load_graph(NETWORK_URL)
+NETWORK_GRAPH = a.load_graph(a.NETWORK_URL)
 
 # EDGE_PROB is probability p for ER graph
 POSS_EDGES = float(NODES) * (NODES - 1) / 2
@@ -28,9 +29,9 @@ network_random = a.random_order(NETWORK_GRAPH)
 er_random = a.random_order(er_graph)
 upa_random = a.random_order(upa_graph)
 
-network_resilience = go.compute_resilience(copy_graph(NETWORK_GRAPH), network_random)
-er_resilience = go.compute_resilience(copy_graph(er_graph), er_random)
-upa_resilience = go.compute_resilience(copy_graph(upa_graph), upa_random)
+network_resilience = go.compute_resilience(a.copy_graph(NETWORK_GRAPH), network_random)
+er_resilience = go.compute_resilience(a.copy_graph(er_graph), er_random)
+upa_resilience = go.compute_resilience(a.copy_graph(upa_graph), upa_random)
 
 
 print "Network Edges:", EDGES
@@ -67,4 +68,6 @@ def plot_resiliences(nodes, network_vals, er_vals, upa_vals):
     plt.title('Comparison of Graph Resilience\nMeasured by Largest Connected Component vs Randomly Removed Nodes\n')
     plt.show()
 
-plot_resiliences(NODES, network_resilience, er_resilience, upa_resilience)
+# plot_resiliences(NODES, network_resilience, er_resilience, upa_resilience)
+
+
