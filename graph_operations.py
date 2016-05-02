@@ -5,9 +5,10 @@ Algorithmic Thinking - Assignment 2
 from collections import deque
 
 def bfs_visited(ugraph, start_node):
-    """ 
-    Undirected graph, starting node -> set of all visited nodes reached by a 
-    breadth-first search from the starting node.
+    """ dict -> set
+    Takes an undirected graph represented by a dictionary and a starting node
+    and returns a set of all visited nodes reached by a breadth-first search
+    from the starting node.
     """
     queue = deque([])
     visited = set([start_node])
@@ -25,8 +26,9 @@ def bfs_visited(ugraph, start_node):
 
 
 def cc_visited(ugraph):
-    """
-    Undirected graph -> list of sets of connected component nodes.
+    """ dict -> list
+    Takes a dictionary representation of an undirected graph and returns a
+    list of sets of connected component nodes.
     """
     remaining_nodes = set(ugraph.keys())
     connected_components = []
@@ -41,8 +43,9 @@ def cc_visited(ugraph):
 
 
 def largest_cc_size(ugraph):
-    """
-    Undirected graph -> integer representing the largest connected component.
+    """ dict -> int
+    Takes a dictionary representation of an undirected graph and returns an
+    integer representing the largest connected component.
     """
     largest = 0
     for component in cc_visited(ugraph):
@@ -53,13 +56,13 @@ def largest_cc_size(ugraph):
 
 
 def compute_resilience(ugraph, attack_order):
-    """
-    Undirected graph, list of nodes -> list of largest connected component
-    after each node in attack order is removed.
+    """ dict, list -> list
+    Takes a dictionary representation of an undirected graph and a list of
+    nodes and returns a list of largest connected component after each node
+    in attack order is removed.
     """
     resilience = []
     for node in attack_order:
-        # print node, ugraph.keys()
         for neighbor in ugraph[node]:
             ugraph[neighbor].remove(node)
         del ugraph[node]
@@ -69,7 +72,7 @@ def compute_resilience(ugraph, attack_order):
 
 
 """
-Graph Operations
+Graph Operations from Assignment 1
 """
 
 def make_complete_graph(num_nodes):

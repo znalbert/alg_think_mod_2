@@ -127,6 +127,9 @@ def make_upa_graph(nodes, out_degree):
 
 
 def check_undirected(graph):
+    """ dict -> boolean
+    Just a sanity check that a graph is in fact undirected.
+    """
     for node in graph:
         for neighbor in graph[node]:
             if node not in graph[neighbor]:
@@ -135,6 +138,9 @@ def check_undirected(graph):
 
 
 def check_number_edges(ugraph):
+    """ dict -> int
+    Just a sanity check to find the number of nodes on a undirected graph.
+    """
     directed_edges = 0
     for node in ugraph:
         directed_edges += len(ugraph[node])
@@ -159,8 +165,8 @@ def random_order(ugraph):
 
 
 def plot_resiliences(nodes, network_vals, er_vals, upa_vals):
-    """
-    Plot an example with two curves with legends
+    """ int, list, list, list -> plot
+    Plots graph of the resiliences for the three graph types: network, ER, UPA.
     """
     node_vals = range(0, nodes)
 

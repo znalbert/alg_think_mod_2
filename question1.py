@@ -68,6 +68,6 @@ def plot_resiliences(nodes, network_vals, er_vals, upa_vals):
     plt.title('Comparison of Graph Resilience\nMeasured by Largest Connected Component vs Randomly Removed Nodes\n')
     plt.show()
 
-# plot_resiliences(NODES, network_resilience, er_resilience, upa_resilience)
+plot_resiliences(NODES, network_resilience, er_resilience, upa_resilience)
 
 
