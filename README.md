@@ -20,6 +20,6 @@ With the above definition for resilience we find that only the ER network is res
 
 # Function Runtime
 
-We were originally given a function to generate the order of nodes to be removed under a targeted attack. However, this function was highly inefficient with a runtime on the order of O(n**2). We were instructed to create an optimized version and plot the runtimes of the two functions. The optimized function has a runtime on the order of O(n).
+We were originally given a function to generate the order of nodes to be removed under a targeted attack. However, this function was highly inefficient with a runtime on the order of O(n**2). We were instructed to create an optimized version and plot the runtimes of the two functions. The optimized function has a runtime on the order of O(n). Also, pleasenote that the spikes in the graph are consistent with Python's garbage collection.
 
 ![Plot Runtimes of Unoptimized and Optimized Targeted Order Functions](https://raw.githubusercontent.com/znalbert/alg_think_mod_2/master/img/function_runtimes.png)
